@@ -72,14 +72,21 @@ server.put('/api/users/:id', (req, res) => {
     // } else if (!changes.includes("name" || "bio")) {
     //     res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
     // }
-    Data.update(id, changes)
-        .then(updated => {
-            // if ()
-            res.status(200).json(updated)
-        })
-        .catch(error => {
-            res.status(500).json({ error: "The user information could not be modified." })
-        })
+    if (id) {
+        if (changes.name && changes.bio) {
+            Data.update(id, changes)
+                .then(updated => {
+                    res.status(200).json(updated)
+                })
+                .catch(error => {
+                    res.status(500).json({ error: "The user information could not be modified." })
+                })
+        } else {
+            res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+        }
+    } else {
+        res.status(404).json({ message: "The user with the specified ID does not exist." })
+    }
 })
 
 const port = 5000
