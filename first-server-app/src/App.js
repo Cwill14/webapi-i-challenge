@@ -19,13 +19,34 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
+  const postUser = info => {
+    axios
+      .post('http://localhost:5000/api/users', info)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  const deleteUser = id => {
+    // e.preventDefault();
+    axios
+      .delete(`http://localhost:5000/api/users/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   return (
     <div className="App">
       <h1>First Server!!!</h1>
-      <List 
-        list={data}
-      />
-      <Form />
+      <List list={data} deleteUser={deleteUser} />
+      <Form postUser={postUser} />
     </div>
   );
 }

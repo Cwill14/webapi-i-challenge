@@ -6,7 +6,11 @@ const List = props => {
     return (
         <div>
             {props.list.map(user => {
-                return <User user={user} key={user.id} />
+                return <User
+                    user={user}
+                    key={user.id}
+                    deleteUser={props.deleteUser}
+                />
             })}
         </div>
     );
