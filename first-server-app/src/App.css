@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  /* width: 40%; */
+  margin: 0 auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+form input, textarea, button {
+    margin: 0.66rem;
+}
+
